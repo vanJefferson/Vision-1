@@ -33,7 +33,6 @@ checkUserAccelerometer(BuildContext context) {
     const oneSecond = Duration(seconds: 1);
     Timer.periodic(oneSecond, (Timer t) => checkUserSafeModeSwitch(subscription));
     kilometersPerHour = position.speed * 3.6;
-    print(kilometersPerHour); // Remove later
 
     if (kilometersPerHour > averageRunningSpeed) {
       if (count < 3) {
