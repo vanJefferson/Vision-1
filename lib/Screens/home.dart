@@ -1,11 +1,13 @@
 import 'package:apple/Alert/alert.dart';
 import 'package:apple/Data/chart3.dart';
 import 'package:apple/Data/chart1.dart';
-import 'package:apple/Data/info.dart';
+import 'package:apple/Data/definition.dart';
 import 'package:apple/Screens/view1.dart';
 import 'package:apple/Screens/view2.dart';
 import 'package:apple/Screens/view3.dart';
 import 'package:apple/Templates/card.dart';
+import 'package:apple/Templates/info.dart';
+import 'package:apple/Templates/title.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +16,6 @@ import 'package:apple/Screens/profile.dart';
 import 'package:apple/Screens/setting.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 late User _currentUser;
 
@@ -220,25 +221,7 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 Card(
                   child: Column(children: <Widget>[
-                    ListTile(
-                      leading: Text(
-                        "Target Overview",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      trailing: CupertinoButton(
-                        child: Icon(CupertinoIcons.fullscreen),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => View1())
-                          );
-                        },
-                      ),
-                    ),
+                    CardTitle("Target Overview", View1()),
                     Divider(
                       height: 1.0,
                       color: CupertinoColors.systemGrey,
@@ -338,28 +321,7 @@ class _HomeState extends State<Home> {
                       height: 5.0,
                       color: CupertinoColors.systemGrey,
                     ),
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            showProdInfo(context);
-                          },
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-                              child: info('Total Production ', _production)
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            showTenderInfo(context);
-                          },
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-                              child: info('Total Tender ', _tender)
-                          ),
-                        ),
-                      ],
-                    ),
+                    Info(_production, _tender),
                     Divider(
                       height: 15.0,
                       color: CupertinoColors.systemGrey,
@@ -406,25 +368,7 @@ class _HomeState extends State<Home> {
                 ),
                 Card(
                   child: Column(children: <Widget>[
-                    ListTile(
-                      leading: Text(
-                        "Target Overview",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      trailing: CupertinoButton(
-                        child: Icon(CupertinoIcons.fullscreen),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => View2())
-                          );
-                        },
-                      ),
-                    ),
+                    CardTitle("Target Overview", View2()),
                     Divider(
                       height: 1.0,
                       color: CupertinoColors.systemGrey,
@@ -707,7 +651,7 @@ class _HomeState extends State<Home> {
                       },
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-                          child: info('Current Production & Presplit ', _production)
+                          child: defintion('Current Production & Presplit ', _production)
                       ),
                     ),
                     Divider(
@@ -753,24 +697,7 @@ class _HomeState extends State<Home> {
                 Card(
                     child: Column(
                   children: [
-                    ListTile(
-                      leading: Text(
-                        "Target Comparison",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      trailing: CupertinoButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => View3())
-                            );
-                          },
-                          child: Icon(CupertinoIcons.fullscreen)),
-                    ),
+                    CardTitle("Target Comparison", View3()),
                     Divider(
                       height: 1.0,
                       color: CupertinoColors.systemGrey,
@@ -885,7 +812,7 @@ class _HomeState extends State<Home> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-                              child: info('Total Presplit ', roundDouble(presplitTotal(_chartData1), 2))
+                              child: defintion('Total Presplit ', roundDouble(presplitTotal(_chartData1), 2))
                             ),
                           ),
                           InkWell(
@@ -903,7 +830,7 @@ class _HomeState extends State<Home> {
                             },
                             child: Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-                                child: info('Total Prod & Presplit ', roundDouble(total(_chartData1), 2))
+                                child: defintion('Total Prod & Presplit ', roundDouble(total(_chartData1), 2))
                             ),
                           ),
                           InkWell(
@@ -912,7 +839,7 @@ class _HomeState extends State<Home> {
                             },
                             child: Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 5, 5, 0),
-                                child: info('Total Tender ', roundDouble(tenTotal(_chartData1), 2))
+                                child: defintion('Total Tender ', roundDouble(tenTotal(_chartData1), 2))
                             ),
                           ),
                         ],
