@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: themeProvider.themeMode,
       theme: MyThemes.lightTheme,
-      darkTheme: MyThemes.darkTheme,
       home: LoginPage(),
     );
   }
