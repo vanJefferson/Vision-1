@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget info(String title, double val) {
+Widget defintion(String title, double val) {
   return Column(
     children: [
       Align(

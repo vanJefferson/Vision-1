@@ -1,5 +1,5 @@
 import 'package:apple/Data/chart1.dart';
-import 'package:apple/Data/info.dart';
+import 'package:apple/Data/definition.dart';
 import 'package:apple/Templates/card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
